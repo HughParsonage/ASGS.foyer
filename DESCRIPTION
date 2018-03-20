@@ -1,0 +1,20 @@
+Package: ASGS.foyer
+Version: 0.1.0
+Title: Interface to the Australian Statistical Geography Standard 
+Description: The Australian Statistical Geography Standard ('ASGS') is 
+  a set of shapefiles by the Australian Bureau of Statistics. This package
+  provides an interface to those shapefiles, as well as methods for converting
+  coordinates to shapefiles.
+Authors@R: person("Hugh", "Parsonage",, "hugh.parsonage@gmail.com", c("aut", "cre"))
+License: MPL
+Depends: R (>= 3.4.0)
+Imports:
+  sp,
+  methods,
+  utils
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+RoxygenNote: 6.0.1
+Suggests: 
+    testthat
