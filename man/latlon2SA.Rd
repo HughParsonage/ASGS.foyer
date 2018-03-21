@@ -5,7 +5,8 @@
 \title{Determine whether coordinates lie in a given statistical area.}
 \usage{
 latlon2SA(lat, lon, to = c("STE", "SA2", "SA1", "SA3", "SA4"),
-  yr = c("2016", "2011"), return = c("v", "sp"), NAME = TRUE)
+  yr = c("2016", "2011"), return = c("v", "sp"), NAME = TRUE,
+  .shapefile = NULL)
 }
 \arguments{
 \item{lat, lon}{Numeric vector representing coordinates in decimal degrees. Coordinates south of the equator have \code{lat < 0}.}
@@ -17,6 +18,8 @@ latlon2SA(lat, lon, to = c("STE", "SA2", "SA1", "SA3", "SA4"),
 \item{return}{Whether to return an atomic vector \code{(v)} representing the shapefile for each point \code{lat, lon} or a spatial points object from package \code{sp}.}
 
 \item{NAME}{(logical, default: \code{TRUE}) whether to use the name or number of the statistical area}
+
+\item{.shapefile}{If specified, an arbitrary shapefile containing the statistical areas to locate.}
 }
 \value{
 The statistical area that contains each point.
