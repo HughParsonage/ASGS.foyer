@@ -20,5 +20,5 @@ install:
 
 script:
 - R CMD build .
-- R CMD check ASGS*tar.gz
+- travis wait 20 R CMD check ASGS*tar.gz
 
