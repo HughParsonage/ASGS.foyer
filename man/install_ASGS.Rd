@@ -4,13 +4,16 @@
 \alias{install_ASGS}
 \title{Install a (nearly) complete package of the Australian Statistical Geography Standard}
 \usage{
-install_ASGS(temp.tar.gz = tempfile(fileext = ".tar.gz"), ...)
+install_ASGS(temp.tar.gz = tempfile(fileext = ".tar.gz"),
+  repos = getOption("repos"), type = getOption("pkgType"), ...)
 }
 \arguments{
 \item{temp.tar.gz}{A file to save the ASGS tarball. Since the package is quite large,
 it may be prudent to set this to a non-temporary file so that you can attempt reinstallation.}
 
-\item{...}{Arguments passed to \code{\link[utils]{install.packages}}.}
+\item{repos, type}{Passed to \code{\link[utils]{install.packages}} when installing ASGS's dependencies (if not already installed).}
+
+\item{...}{Other arguments passed to \code{\link[utils]{install.packages}}.}
 }
 \description{
 Install a (nearly) complete package of the Australian Statistical Geography Standard
