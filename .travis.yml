@@ -1,14 +1,24 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
+sudo: true
 latex: false
 pandoc: false
+r_binary_packages:
+   - rgdal
+   - devtools
+addons:
+  apt:
+    packages:
+      - libgdal-dev
+      - libproj-dev
+
 
 install:
+- R -e 'install.packages("devtools", repos = "https://cran.rstudio.com")'
 - R -e 'devtools::install_deps(dep = T)'
 
 script:
 - R CMD build .
-- travis_wait 30 R CMD check *tar.gz
+- R CMD check ASGS*tar.gz
 
