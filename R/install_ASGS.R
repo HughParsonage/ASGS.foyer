@@ -22,14 +22,23 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
     r <- getOption("repos")
     if (identical(r["CRAN"], "@CRAN@")) {
       message("Setting CRAN repository to https://rstudio.cran.com")
-      utils::install.packages(asgs_deps,
-                              repos = "https://rstudio.cran.com",
-                              type = type)
+      for (pkg in asgs_deps) {
+        if (!requireNamespace(pkg, quietly = TRUE)) {
+          utils::install.packages(pkg,
+                                  repos = "https://rstudio.cran.com",
+                                  type = type,
+                                  ...)
+        }
+      }
     } else {
-      utils::install.packages(asgs_deps,
-                              repos = repos,
-                              type = type,
-                              ...)
+      for (pkg in asgs_deps) {
+        if (!requireNamespace(pkg, quietly = TRUE)) {
+          utils::install.packages(pkg,
+                                  repos = repos,
+                                  type = type,
+                                  ...)
+        }
+      }
     }
   }
 
