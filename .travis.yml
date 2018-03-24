@@ -22,3 +22,6 @@ script:
 - R CMD build .
 - travis_wait 20 R CMD check ASGS.foyer*tar.gz
 
+after_failure:
+- Rscript -e 'library(ASGS.foyer);install_ASGS()'
+
