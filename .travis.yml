@@ -23,5 +23,5 @@ script:
 - travis_wait 20 R CMD check ASGS.foyer*tar.gz
 
 after_failure:
-- Rscript -e 'library(ASGS.foyer);install_ASGS()'
+- Rscript -e 'install.packages(dir(pattern = "ASGS\\.foyer.*tar\\.gz$")[1], repos=NULL);library(ASGS.foyer);install_ASGS()'
 
