@@ -10,7 +10,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                          type = getOption("pkgType"),
                          ...) {
   asgs_deps <-
-    c("dplyr", "leaflet", "sp", "spdep", "htmltools", "magrittr", "methods",
+    c("dplyr", "leaflet", "sp", "spdep", "htmltools", "magrittr",
       "rgdal", "data.table", "hutils")
 
   dots2list <- function(...) {
