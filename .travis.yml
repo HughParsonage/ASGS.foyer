@@ -19,8 +19,10 @@ addons:
 
 script:
 - R CMD build .
-- travis_wait 20 R CMD check ASGS.foyer*tar.gz
+#- travis_wait 20 R CMD check ASGS.foyer*tar.gz
+- R CMD install ASGS.foyer*tar.gz
+- R -e 'devtools::test()'
 
 after_failure:
-- Rscript -e 'install.packages(dir(pattern = "ASGS\\.foyer.*tar\\.gz$")[1], repos=NULL);library(ASGS.foyer);install_ASGS(quiet = T)'
+#- Rscript -e 'install.packages(dir(pattern = "ASGS\\.foyer.*tar\\.gz$")[1], repos=NULL);library(ASGS.foyer);install_ASGS(quiet = T)'
 
