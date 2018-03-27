@@ -17,11 +17,6 @@ addons:
       - libgdal-dev
       - libproj-dev
 
-
-install:
-- R -e 'install.packages("devtools", repos = "https://cran.rstudio.com")'
-- R -e 'devtools::install_deps(dep = T)'
-
 script:
 - R CMD build .
 - travis_wait 20 R CMD check ASGS.foyer*tar.gz
