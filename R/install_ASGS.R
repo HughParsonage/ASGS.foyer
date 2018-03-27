@@ -28,6 +28,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
   reinstalls <- .reinstalls
   backoff <- 2
   while (reinstalls > 0L && length(absent_deps())) {
+    cat(reinstalls, absent_deps())
     reinstalls <- reinstalls - 1L
     backoff <- 2 * backoff
     message("Attempting to install the following uninstalled dependencies of ASGS:",
@@ -62,9 +63,9 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
   }
 
   if (length(absent_deps())) {
-    stop("ASGS requires the following packages:\n\t",
-         paste0(absent_deps(), collapse = "\n\t"),
-         "\n",
+    stop("ASGS requires the following packages: ",
+         paste0(absent_deps(), collapse = " "),
+         ". ",
          "Attempts to install did not succeed. Aborting before (lengthy) download.")
   }
 
