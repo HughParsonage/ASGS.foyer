@@ -18,7 +18,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
       "rgdal", "data.table", "hutils")
 
   absent_deps <- function(deps = asgs_deps) {
-    asgs_deps[!vapply(deps, requireNamespace, quietly = TRUE, logical(1L))]
+    deps[!vapply(deps, requireNamespace, quietly = TRUE, logical(1L))]
   }
 
   # dots2list <- function(...) {
@@ -31,7 +31,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
     reinstalls <- reinstalls - 1L
     backoff <- 2 * backoff
     message("Attempting to install the following uninstalled dependencies of ASGS:",
-            absent_deps(), ".\n",
+            paste0(absent_deps(), collapse = " "), ".\n",
             reinstalls, " reinstalls remaining.")
     if (backoff > 10) {
       message("Waiting ", backoff, " seconds before attempting to reinstallation.",
