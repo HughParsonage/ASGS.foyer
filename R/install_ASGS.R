@@ -1,13 +1,14 @@
 #' Install a (nearly) complete package of the Australian Statistical Geography Standard
 #' @param temp.tar.gz A file to save the ASGS tarball. Since the package is quite large,
 #' it may be prudent to set this to a non-temporary file so that you can attempt reinstallation.
-#' @param repos,type Passed to \code{\link[utils]{install.packages}} when installing ASGS's dependencies (if not already installed).
+#' @param lib,repos,type Passed to \code{\link[utils]{install.packages}} when installing ASGS's dependencies (if not already installed).
 #' @param ... Other arguments passed to \code{\link[utils]{install.packages}}.
 #' @param .reinstalls Number of times to attempt to install any (absent) dependencies of \code{ASGS}
 #' before aborting. Try restarting R rather than setting this number too high.
 #' @export
 
 install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
+                         lib = .libPaths()[1],
                          repos = getOption("repos"),
                          type = getOption("pkgType"),
                          ...,
@@ -18,7 +19,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
       "rgdal", "data.table", "hutils")
 
   absent_deps <- function(deps = asgs_deps) {
-    deps[!vapply(deps, requireNamespace, quietly = TRUE, logical(1L))]
+    deps[!vapply(deps, requireNamespace, lib.loc = lib, quietly = TRUE, FUN.VALUE = logical(1L))]
   }
 
   # dots2list <- function(...) {
@@ -45,6 +46,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
       for (pkg in asgs_deps) {
         if (!requireNamespace(pkg, quietly = TRUE)) {
           utils::install.packages(pkg,
+                                  lib = lib,
                                   repos = "https://cran.uni-muenster.de/",
                                   type = type,
                                   ...)
@@ -55,6 +57,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
         if (!requireNamespace(pkg, quietly = TRUE)) {
           utils::install.packages(pkg,
                                   repos = repos,
+                                  lib = lib,
                                   type = type,
                                   ...)
         }
@@ -74,5 +77,9 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
   tempf <- tempfile(fileext = ".tar.gz")
   utils::download.file(url = "https://dl.dropbox.com/s/zmggqb1wmmv7mqe/ASGS_0.4.0.tar.gz",
                        destfile = tempf)
-  utils::install.packages(tempf, type = "source", repos = NULL, ...)
+  utils::install.packages(tempf,
+                          lib = lib,
+                          type = "source",
+                          repos = NULL,
+                          ...)
 }

@@ -13,6 +13,7 @@ test_that("Installation when using repos OK", {
   tempf <- tempfile("002")
   dir.create(tempf)
   install_ASGS(repos = "https://mran.microsoft.com/snapshot/2018-01-01",
-               lib = tempf)
+               lib = tempf,
+               quiet = TRUE)
   expect_true(TRUE)
 })
