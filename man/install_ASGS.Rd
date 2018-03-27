@@ -5,7 +5,8 @@
 \title{Install a (nearly) complete package of the Australian Statistical Geography Standard}
 \usage{
 install_ASGS(temp.tar.gz = tempfile(fileext = ".tar.gz"),
-  repos = getOption("repos"), type = getOption("pkgType"), ...)
+  repos = getOption("repos"), type = getOption("pkgType"), ...,
+  .reinstalls = 2L)
 }
 \arguments{
 \item{temp.tar.gz}{A file to save the ASGS tarball. Since the package is quite large,
@@ -14,6 +15,9 @@ it may be prudent to set this to a non-temporary file so that you can attempt re
 \item{repos, type}{Passed to \code{\link[utils]{install.packages}} when installing ASGS's dependencies (if not already installed).}
 
 \item{...}{Other arguments passed to \code{\link[utils]{install.packages}}.}
+
+\item{.reinstalls}{Number of times to attempt to install any (absent) dependencies of \code{ASGS}
+before aborting. Try restarting R rather than setting this number too high.}
 }
 \description{
 Install a (nearly) complete package of the Australian Statistical Geography Standard
