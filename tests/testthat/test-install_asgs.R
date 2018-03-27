@@ -4,7 +4,7 @@ test_that("Installation OK", {
   skip_on_cran()
   tempf <- tempfile("001")
   dir.create(tempf)
-  # install_ASGS(lib = tempf)
+  install_ASGS()
   expect_true(TRUE)
 })
 
