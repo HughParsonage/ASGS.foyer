@@ -14,6 +14,7 @@ r_binary_packages:
    - stringi
    - roxygen2
    - testthat
+   - raster
 addons:
   apt:
     packages:
