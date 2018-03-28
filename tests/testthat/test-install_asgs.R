@@ -10,12 +10,15 @@ test_that("Installation OK", {
 
 test_that("Installation when using repos OK", {
   skip_on_cran()
+  skip_if(file.exists("abc.tar.gz"))
   tempf <- tempfile("002")
   dir.create(tempf)
-  install_ASGS(repos = "https://mran.microsoft.com/snapshot/2018-01-01",
+  install_ASGS(temp.tar.gz = "abc.tar.gz",
+               repos = "https://mran.microsoft.com/snapshot/2018-01-01",
                lib = tempf,
                quiet = TRUE)
-  expect_true(TRUE)
+  file.exists("abc.tar.tz")
+  expect_true(file.remove("abc.tar.tz"))
 })
 
 test_that("All arguments have an effect", {
