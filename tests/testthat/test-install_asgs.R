@@ -17,3 +17,7 @@ test_that("Installation when using repos OK", {
                quiet = TRUE)
   expect_true(TRUE)
 })
+
+test_that("All arguments have an effect", {
+  expect_null(codetools::checkUsage(install_ASGS, all = TRUE))
+})

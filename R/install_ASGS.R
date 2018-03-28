@@ -74,7 +74,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
 
   message("Attempting install of ASGS (700 MB) from Dropbox. This should take some minutes to download.")
 
-  tempf <- tempfile(fileext = ".tar.gz")
+  tempf <- temp.tar.gz
   utils::download.file(url = "https://dl.dropbox.com/s/zmggqb1wmmv7mqe/ASGS_0.4.0.tar.gz",
                        destfile = tempf)
   utils::install.packages(tempf,
