@@ -2,23 +2,31 @@
 
 language: R
 sudo: true
-latex: false
+latex: true
 pandoc: false
 r_binary_packages:
    - rgdal
    - devtools
+   - dplyr
+   - Rcpp
+   - BH
+   - utf8
+   - stringi
+   - roxygen2
+   - testthat
+   - raster
 addons:
   apt:
     packages:
       - libgdal-dev
       - libproj-dev
 
-
-install:
-- R -e 'install.packages("devtools", repos = "https://cran.rstudio.com")'
-- R -e 'devtools::install_deps(dep = T)'
-
 script:
 - R CMD build .
-- travis_wait 20 R CMD check ASGS*tar.gz
+#- travis_wait 20 R CMD check ASGS.foyer*tar.gz
+- R -e 'install.packages(dir(pattern = "ASGS\\.foyer.*tar\\.gz$")[1], repos=NULL)'
+- R -e 'devtools::test()'
+
+after_failure:
+#- Rscript -e 'install.packages(dir(pattern = "ASGS\\.foyer.*tar\\.gz$")[1], repos=NULL);library(ASGS.foyer);install_ASGS(quiet = T)'
 
