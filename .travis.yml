@@ -10,16 +10,6 @@ latex: true
 pandoc: false
 before_install:
 - Rscript -e 'install.packages(c("devtools", "sp"), quiet = T)'
-r_binary_packages:
-   - rgdal
-   - dplyr
-   - Rcpp
-   - BH
-   - utf8
-   - stringi
-   - roxygen2
-   - testthat
-   - raster
 addons:
   apt:
     packages:
