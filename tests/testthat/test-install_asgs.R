@@ -11,6 +11,7 @@ test_that("Installation OK", {
 test_that("Installation when using repos OK", {
   skip_on_cran()
   skip_if(file.exists("abc.tar.gz"))
+  skip_if_not(getRversion() == "3.4.3")
   tempf <- tempfile("002")
   dir.create(tempf)
   install_ASGS(temp.tar.gz = "abc.tar.gz",

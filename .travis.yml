@@ -24,5 +24,6 @@ script:
 
 after_failure:
 - Rscript -e 'cat(readLines("/home/travis/build/HughParsonage/ASGS.foyer/ASGS.foyer.Rcheck/00install.out"), sep = "\n")'
+- Rscript -e 'try(cat(readLines("/home/travis/build/HughParsonage/ASGS.foyer/ASGS.foyer.Rcheck/tests/testthat.Rout.fail"), sep = "\n"))'
 #- Rscript -e 'install.packages(dir(pattern = "ASGS\\.foyer.*tar\\.gz$")[1], repos=NULL);library(ASGS.foyer);install_ASGS(quiet = T)'
 
