@@ -17,8 +17,8 @@
 install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                          overwrite = FALSE,
                          lib = .libPaths()[1],
-                         repos = getOption("repos", "https://rstudio.cran.com"),
-                         type = getOption("pkgType"),
+                         repos = getOption("repos"),
+                         type = "source",
                          ...,
                          .reinstalls = 2L) {
   tempf <- temp.tar.gz
@@ -61,15 +61,13 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
     r <- getOption("repos")
     if (identical(r["CRAN"], "@CRAN@")) {
       message("Setting CRAN repository to https://rstudio.cran.com")
+      options(repos = "https://rstudio.cran.com")
       utils::install.packages(absent_deps(),
                               lib = lib,
                               repos = "https://rstudio.cran.com",
                               type = type,
                               ...)
     } else {
-      if (is.null(r)) {
-        options("repos" = "https://rstudio.cran.com")
-      }
       utils::install.packages(absent_deps(),
                               repos = repos,
                               lib = lib,
