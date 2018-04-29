@@ -18,9 +18,9 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                          overwrite = FALSE,
                          lib = .libPaths()[1],
                          repos = getOption("repos"),
-                         type = "source",
+                         type = getOption("pkgType", "source"),
                          ...,
-                         .reinstalls = 2L) {
+                         .reinstalls = 4L) {
   tempf <- temp.tar.gz
   if (file.exists(tempf)) {
     if (!identical(overwrite, FALSE) && !isTRUE(overwrite)) {
@@ -58,8 +58,9 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
       message("Waiting ", backoff, " seconds before attempting to reinstallation.",
               "Wait times double on each reattempt as a courtesy to repository maintainers.")
     }
-    r <- getOption("repos")
+    r <- repos
     if (identical(r["CRAN"], "@CRAN@")) {
+      cat("AAAA")
       message("Setting CRAN repository to https://rstudio.cran.com")
       utils::install.packages(absent_deps(),
                               lib = lib,
@@ -67,33 +68,16 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                               type = "source",
                               contrib.url = "https://rstudio.cran.com/src/contrib",
                               ...)
-    } else if ("@CRAN" %in% repos) {
-      repos <- "https://rstudio.cran.com"
-      contrib_url <-
-        local({
-          ver <- paste(R.version$major,
-                       strsplit(R.version$minor, ".", fixed = TRUE)[[1L]][1L],
-                       sep = ".")
-          mac.path <- "macosx"
-          if (substr(type, 1L, 11L) == "mac.binary.") {
-            mac.path <- paste(mac.path, substring(type, 12L), sep = "/")
-            type <- "mac.binary"
-          }
-          res <- switch(type,
-                        source = paste(gsub("/$", "", repos),
-                                       "src", "contrib", sep = "/"),
-                        mac.binary = paste(sub("/$", "", repos), "bin", mac.path, "contrib", ver, sep = "/"),
-                        win.binary = paste(sub("/$", "", repos), "bin", "windows",
-                                           "contrib", ver, sep = "/"))
-          res
-        })
+    } else if ("@CRAN@" %in% repos) {
+      cat("BBBB\n")
+      options(repos = c(CRAN = "https://cran.ms.unimelb.edu.au/"))
       utils::install.packages(absent_deps(),
-                              repos = repos,
+                              repos =  c(CRAN = "https://cran.ms.unimelb.edu.au/"),
                               type = type,
                               lib = lib,
-                              contriburl = contrib_url,
                               ...)
     } else {
+      cat("CCCC\n")
       utils::install.packages(absent_deps(),
                               repos = repos,
                               lib = lib,

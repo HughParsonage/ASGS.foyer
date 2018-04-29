@@ -6,7 +6,7 @@
 \usage{
 install_ASGS(temp.tar.gz = tempfile(fileext = ".tar.gz"), overwrite = FALSE,
   lib = .libPaths()[1], repos = getOption("repos"),
-  type = getOption("pkgType"), ..., .reinstalls = 2L)
+  type = getOption("pkgType", "source"), ..., .reinstalls = 4L)
 }
 \arguments{
 \item{temp.tar.gz}{A file to save the ASGS tarball after download. Since the package is quite large,
