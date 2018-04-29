@@ -68,7 +68,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                               ...)
     } else {
       utils::install.packages(absent_deps(),
-                              repos = repos,
+                              repos = r,
                               lib = lib,
                               type = type,
                               ...)
