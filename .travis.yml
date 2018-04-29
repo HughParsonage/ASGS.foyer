@@ -2,15 +2,16 @@
 
 language: R
 r:
-- oldrel
+- 3.4
 - release
 - devel
 sudo: true
 latex: true
 pandoc: false
+before_install:
+- Rscript -e 'install.packages("devtools", quiet = T)'
 r_binary_packages:
    - rgdal
-   - devtools
    - dplyr
    - Rcpp
    - BH
