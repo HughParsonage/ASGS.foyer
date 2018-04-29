@@ -9,7 +9,7 @@ sudo: true
 latex: true
 pandoc: false
 before_install:
-- Rscript -e 'install.packages("devtools", quiet = T)'
+- Rscript -e 'install.packages(c("devtools", "sp"), quiet = T)'
 r_binary_packages:
    - rgdal
    - dplyr
