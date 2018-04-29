@@ -61,12 +61,37 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
     r <- getOption("repos")
     if (identical(r["CRAN"], "@CRAN@")) {
       message("Setting CRAN repository to https://rstudio.cran.com")
-      options(repos = "https://rstudio.cran.com")
       utils::install.packages(absent_deps(),
                               lib = lib,
                               repos = "https://rstudio.cran.com",
-                              type = type,
+                              type = "source",
                               contrib.url = "https://rstudio.cran.com/src/contrib",
+                              ...)
+    } else if ("@CRAN" %in% repos) {
+      repos <- "https://rstudio.cran.com"
+      contrib_url <-
+        local({
+          ver <- paste(R.version$major,
+                       strsplit(R.version$minor, ".", fixed = TRUE)[[1L]][1L],
+                       sep = ".")
+          mac.path <- "macosx"
+          if (substr(type, 1L, 11L) == "mac.binary.") {
+            mac.path <- paste(mac.path, substring(type, 12L), sep = "/")
+            type <- "mac.binary"
+          }
+          res <- switch(type,
+                        source = paste(gsub("/$", "", repos),
+                                       "src", "contrib", sep = "/"),
+                        mac.binary = paste(sub("/$", "", repos), "bin", mac.path, "contrib", ver, sep = "/"),
+                        win.binary = paste(sub("/$", "", repos), "bin", "windows",
+                                           "contrib", ver, sep = "/"))
+          res
+        })
+      utils::install.packages(absent_deps(),
+                              repos = repos,
+                              type = type,
+                              lib = lib,
+                              contriburl = contrib_url,
                               ...)
     } else {
       utils::install.packages(absent_deps(),
@@ -76,8 +101,9 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                               ...)
     }
   }
+}
 
-  if (length(absent_deps())) {
+if (length(absent_deps())) {
     stop("ASGS requires the following packages: ",
          paste0(absent_deps(), collapse = " "),
          ". ",
