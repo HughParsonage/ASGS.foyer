@@ -66,6 +66,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                               lib = lib,
                               repos = "https://rstudio.cran.com",
                               type = type,
+                              contrib.url = "https://rstudio.cran.com/src/contrib",
                               ...)
     } else {
       utils::install.packages(absent_deps(),
