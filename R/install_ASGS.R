@@ -101,9 +101,8 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                               ...)
     }
   }
-}
 
-if (length(absent_deps())) {
+  if (length(absent_deps())) {
     stop("ASGS requires the following packages: ",
          paste0(absent_deps(), collapse = " "),
          ". ",
