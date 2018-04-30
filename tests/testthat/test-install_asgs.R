@@ -3,9 +3,12 @@ context("test-install_asgs.R")
 test_that("Installation OK", {
   skip_on_cran()
   tempf <- tempfile("001")
+  skip_if(dir.exists(tempf))
   dir.create(tempf)
   install_ASGS(lib = tempf)
-  expect_true(TRUE)
+  expect_true(TRUE,
+              info = paste(getOption("repos"),
+                           dir(tempf, recursive = TRUE)))
 })
 
 test_that("Installation when using repos OK", {

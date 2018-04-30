@@ -75,8 +75,6 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                               repos =  c(CRAN = "https://cran.ms.unimelb.edu.au/"),
                               type = type,
                               lib = lib,
-                              repos = "https://cran.uni-muenster.de/",
-                              type = type,
                               ...)
     } else {
       utils::install.packages(absent_deps(),
