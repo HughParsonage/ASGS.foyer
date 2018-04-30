@@ -11,6 +11,7 @@
 #' @param ... Other arguments passed to \code{\link[utils]{install.packages}}.
 #' @param .reinstalls Number of times to attempt to install any (absent) dependencies of \code{ASGS}
 #' before aborting. Try restarting R rather than setting this number too high.
+#' @param verbose (logical, default: \code{FALSE}) Report logic paths?
 #' @return \code{temp.tar.gz}, invisibly.
 #' @export
 
@@ -20,7 +21,8 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                          repos = getOption("repos"),
                          type = getOption("pkgType", "source"),
                          ...,
-                         .reinstalls = 4L) {
+                         .reinstalls = 4L,
+                         verbose = FALSE) {
   tempf <- temp.tar.gz
   if (file.exists(tempf)) {
     if (!identical(overwrite, FALSE) && !isTRUE(overwrite)) {
@@ -36,8 +38,9 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
 
   asgs_deps <-
     c("dplyr", "leaflet", "sp",
-      "spdep", "htmltools", "magrittr",
-      "rgdal", "data.table", "hutils")
+      "htmltools", "magrittr",
+      "rgdal", "data.table", "hutils",
+      "spdep")
 
   absent_deps <- function(deps = asgs_deps) {
     deps[!vapply(deps, requireNamespace,
@@ -61,7 +64,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
     r <- repos
 
     if (identical(r["CRAN"], "@CRAN@")) {
-      cat("AAAA")
+      if (verbose) cat("AAAA\n")
       message("Setting CRAN repository to https://rstudio.cran.com")
       utils::install.packages(absent_deps(),
                               lib = lib,
@@ -70,6 +73,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                               contrib.url = "https://rstudio.cran.com/src/contrib",
                               ...)
     } else if ("@CRAN@" %in% repos) {
+      if (verbose) cat("BBBB\n")
       options(repos = c(CRAN = "https://cran.ms.unimelb.edu.au/"))
       utils::install.packages(absent_deps(),
                               repos =  c(CRAN = "https://cran.ms.unimelb.edu.au/"),
@@ -77,6 +81,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                               lib = lib,
                               ...)
     } else {
+      if (verbose) cat("CCCC\n")
       utils::install.packages(absent_deps(),
                               repos = repos,
                               lib = lib,

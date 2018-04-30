@@ -6,7 +6,8 @@
 \usage{
 install_ASGS(temp.tar.gz = tempfile(fileext = ".tar.gz"), overwrite = FALSE,
   lib = .libPaths()[1], repos = getOption("repos"),
-  type = getOption("pkgType", "source"), ..., .reinstalls = 4L)
+  type = getOption("pkgType", "source"), ..., .reinstalls = 4L,
+  verbose = FALSE)
 }
 \arguments{
 \item{temp.tar.gz}{A file to save the ASGS tarball after download. Since the package is quite large,
@@ -20,6 +21,8 @@ it may be prudent to set this to a non-temporary file so that subsequent attempt
 
 \item{.reinstalls}{Number of times to attempt to install any (absent) dependencies of \code{ASGS}
 before aborting. Try restarting R rather than setting this number too high.}
+
+\item{verbose}{(logical, default: \code{FALSE}) Report logic paths?}
 }
 \value{
 \code{temp.tar.gz}, invisibly.
