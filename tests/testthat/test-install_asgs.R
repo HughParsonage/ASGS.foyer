@@ -2,15 +2,24 @@ context("test-install_asgs.R")
 
 test_that("Installation OK", {
   skip_on_cran()
-  tempf <- tempfile("001")
+  tempf <- normalizePath(tempfile("01"), winslash = "/")
+  skip_if(dir.exists(tempf))
   dir.create(tempf)
-  install_ASGS()
-  expect_true(TRUE)
+  tryCatch(install_ASGS(lib = tempf, verbose = TRUE),
+           error = function(e) {
+             cat("spdep: ", as.character(requireNamespace("spdep", quietly = TRUE)), "\n",
+                 tempf, "\n")
+             stop(e$m)
+           })
+  expect_true(TRUE,
+              info = paste(getOption("repos"),
+                           dir(tempf, recursive = TRUE)))
 })
 
 test_that("Installation when using repos OK", {
   skip_on_cran()
   skip_if(file.exists("abc.tar.gz"))
+  skip_if_not(getRversion() == "3.4.3")
   tempf <- tempfile("002")
   dir.create(tempf)
   install_ASGS(temp.tar.gz = "abc.tar.gz",
