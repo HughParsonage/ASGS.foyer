@@ -5,15 +5,22 @@ test_that("Installation OK", {
   tempf <- normalizePath(tempfile("01"), winslash = "/")
   skip_if(dir.exists(tempf))
   dir.create(tempf)
-  tryCatch(install_ASGS(lib = tempf, verbose = TRUE),
-           error = function(e) {
-             cat("spdep: ", as.character(requireNamespace("spdep", quietly = TRUE)), "\n",
-                 tempf, "\n")
-             stop(e$m)
-           })
-  expect_true(TRUE,
-              info = paste(getOption("repos"),
-                           dir(tempf, recursive = TRUE)))
+  install_notpossible <-
+    tryCatch(install.packages("TeXCheckR", lib = tempf),
+             error = function(e) {
+               TRUE
+             })
+  if (!is.null(install_notpossible) && install_notpossible) {
+    skip("Unable to try install")
+  } else {
+    tryCatch(install_ASGS(lib = tempf, verbose = TRUE),
+             error = function(e) {
+               cat("spdep: ", as.character(requireNamespace("spdep", quietly = TRUE)), "\n",
+                   tempf, "\n")
+               stop(e$m)
+             })
+    expect_true(TRUE)
+  }
 })
 
 test_that("Installation when using repos OK", {
