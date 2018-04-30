@@ -59,6 +59,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
               "Wait times double on each reattempt as a courtesy to repository maintainers.")
     }
     r <- repos
+
     if (identical(r["CRAN"], "@CRAN@")) {
       cat("AAAA")
       message("Setting CRAN repository to https://rstudio.cran.com")
@@ -74,6 +75,8 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                               repos =  c(CRAN = "https://cran.ms.unimelb.edu.au/"),
                               type = type,
                               lib = lib,
+                              repos = "https://cran.uni-muenster.de/",
+                              type = type,
                               ...)
     } else {
       utils::install.packages(absent_deps(),

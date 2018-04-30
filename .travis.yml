@@ -8,8 +8,10 @@ r:
 sudo: true
 latex: true
 pandoc: false
+
 before_install:
 - Rscript -e 'install.packages(c("devtools", "sp"), quiet = T)'
+
 addons:
   apt:
     packages:
@@ -25,5 +27,9 @@ script:
 after_failure:
 - Rscript -e 'cat(readLines("/home/travis/build/HughParsonage/ASGS.foyer/ASGS.foyer.Rcheck/00install.out"), sep = "\n")'
 - Rscript -e 'try(cat(readLines("/home/travis/build/HughParsonage/ASGS.foyer/ASGS.foyer.Rcheck/tests/testthat.Rout.fail"), sep = "\n"))'
+- R -e 'install.packages(dir(pattern = "ASGS\\.foyer.*tar\\.gz$")[1], repos=NULL)'
+- R -e 'devtools::test()'
+
+
 #- Rscript -e 'install.packages(dir(pattern = "ASGS\\.foyer.*tar\\.gz$")[1], repos=NULL);library(ASGS.foyer);install_ASGS(quiet = T)'
 
