@@ -69,7 +69,6 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                               contrib.url = "https://rstudio.cran.com/src/contrib",
                               ...)
     } else if ("@CRAN@" %in% repos) {
-      cat("BBBB\n")
       options(repos = c(CRAN = "https://cran.ms.unimelb.edu.au/"))
       utils::install.packages(absent_deps(),
                               repos =  c(CRAN = "https://cran.ms.unimelb.edu.au/"),
@@ -77,7 +76,6 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                               lib = lib,
                               ...)
     } else {
-      cat("CCCC\n")
       utils::install.packages(absent_deps(),
                               repos = repos,
                               lib = lib,
