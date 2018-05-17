@@ -1,7 +1,9 @@
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/HughParsonage/ASGS.foyer?branch=master&svg=true)](https://ci.appveyor.com/project/HughParsonage/ASGS.foyer)
 
+
 # ASGS.foyer 0.2.1
 * Added `codetools` and `spdep` to Suggests as they are used in tests. Thanks to CRAN for notifying.
+
 
 # ASGS.foyer 0.2.0
 
