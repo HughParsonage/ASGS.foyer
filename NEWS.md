@@ -1,5 +1,7 @@
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/HughParsonage/ASGS.foyer?branch=master&svg=true)](https://ci.appveyor.com/project/HughParsonage/ASGS.foyer)
 
+# ASGS.foyer
+* Add SLA 2006 centroids (2018-09-03)
 
 # ASGS.foyer 0.2.1
 * Added `codetools` and `spdep` to Suggests as they are used in tests. Thanks to CRAN for notifying.
