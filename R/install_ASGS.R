@@ -11,6 +11,9 @@
 #' @param ... Other arguments passed to \code{\link[utils]{install.packages}}.
 #' @param .reinstalls Number of times to attempt to install any (absent) dependencies of \code{ASGS}
 #' before aborting. Try restarting R rather than setting this number too high.
+#' @param url.tar.gz The URL of the tarball to be downloaded. Not normally
+#' needed by users, but may be in case the link becomes fallow, and
+#' a new one becomes available before the release of a new package entirely.
 #' @param verbose (logical, default: \code{FALSE}) Report logic paths?
 #' @return \code{temp.tar.gz}, invisibly.
 #' @export
