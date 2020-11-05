@@ -22,6 +22,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                          type = getOption("pkgType", "source"),
                          ...,
                          .reinstalls = 4L,
+                         url.tar.gz = "https://github.com/HughParsonage/ASGS/releases/download/v040tar/ASGS_0.4.0.tar.gz",
                          verbose = FALSE) {
   tempf <- temp.tar.gz
   if (file.exists(tempf)) {
@@ -58,7 +59,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
             reinstalls, " reinstalls remaining.")
     Sys.sleep(backoff)
     if (backoff > 10) {
-      message("Waiting ", backoff, " seconds before attempting to reinstallation.",
+      message("Waiting ", backoff, " seconds before attempting reinstallation.",
               "Wait times double on each reattempt as a courtesy to repository maintainers.")
     }
     r <- repos
@@ -97,10 +98,10 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
          "Attempts to install did not succeed. Aborting before (lengthy) download.")
   }
 
-  message("Attempting install of ASGS (700 MB) from Dropbox. ",
+  message("Attempting install of ASGS (700 MB) from GitHub. ",
           "This should take some minutes to download.")
 
-  utils::download.file(url = "https://dl.dropbox.com/s/zmggqb1wmmv7mqe/ASGS_0.4.0.tar.gz",
+  utils::download.file(url = url.tar.gz,
                        destfile = tempf)
   utils::install.packages(tempf,
                           lib = lib,
