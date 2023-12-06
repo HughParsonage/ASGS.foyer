@@ -1,5 +1,5 @@
 Package: ASGS.foyer
-Version: 0.3.0
+Version: 0.3.2
 Title: Interface to the Australian Statistical Geography Standard 
 Description: The Australian Statistical Geography Standard ('ASGS') is 
   a set of shapefiles by the Australian Bureau of Statistics. This package
@@ -15,7 +15,7 @@ Imports:
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.0
 Suggests: 
     testthat,
     spdep,
