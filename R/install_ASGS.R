@@ -32,7 +32,7 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                          url.tar.gz = NULL,
                          verbose = FALSE) {
   if (is.null(url.tar.gz)) {
-    url.tar.gz <- "https://github.com/HughParsonage/ASGS/archive/refs/tags/v2021.0.tar.gz"
+    url.tar.gz <- "https://github.com/HughParsonage/ASGS/releases/download/v2021.1/ASGS_2021.1.tar.gz"
   }
   if (identical(url.tar.gz, "latest")) {
     url.tar.gzs <- readLines("https://raw.githubusercontent.com/HughParsonage/ASGS.foyer/master/data-raw/ASGS-release-tarballs")[1]
@@ -113,8 +113,9 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
 
   message("Attempting install of ASGS (700 MB) from GitHub. ",
           "This should take some minutes to download.")
-
+  options(timeout = 3600)
   utils::download.file(url = url.tar.gz,
+                       mode = "wb",
                        destfile = tempf)
   utils::install.packages(tempf,
                           lib = lib,
