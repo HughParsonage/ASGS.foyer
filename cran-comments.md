@@ -1,5 +1,5 @@
 
-Packages `codetools` and `spdep` have been added to Suggests.
+New URL for installation
 
 ## Test environments
 * local CRAN install R 3.5.0

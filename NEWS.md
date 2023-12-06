@@ -2,6 +2,9 @@
 
 # ASGS.foyer
 
+## ASGS.foyer 0.3.1
+* Use `NULL` as default for `url.tar.gz` to avoid overflow
+
 ## ASGS.foyer 0.3.0
 * Add SLA 2006 centroids (2018-09-03)
 * Update dropbox link to GitHub

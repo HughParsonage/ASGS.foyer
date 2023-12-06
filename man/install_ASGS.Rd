@@ -12,8 +12,7 @@ install_ASGS(
   type = getOption("pkgType", "source"),
   ...,
   .reinstalls = 4L,
- 
-    url.tar.gz = "https://github.com/HughParsonage/ASGS/releases/download/v040tar/ASGS_0.4.0.tar.gz",
+  url.tar.gz = NULL,
   verbose = FALSE
 )
 }

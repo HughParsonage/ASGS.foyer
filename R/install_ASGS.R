@@ -25,8 +25,11 @@ install_ASGS <- function(temp.tar.gz = tempfile(fileext = ".tar.gz"),
                          type = getOption("pkgType", "source"),
                          ...,
                          .reinstalls = 4L,
-                         url.tar.gz = "https://github.com/HughParsonage/ASGS/releases/download/v040tar/ASGS_0.4.0.tar.gz",
+                         url.tar.gz = NULL,
                          verbose = FALSE) {
+  if (is.null(url.tar.gz)) {
+    url.tar.gz <- "https://github.com/HughParsonage/ASGS/releases/download/v040tar/ASGS_0.4.0.tar.gz"
+  }
   tempf <- temp.tar.gz
   if (file.exists(tempf)) {
     if (!identical(overwrite, FALSE) && !isTRUE(overwrite)) {
