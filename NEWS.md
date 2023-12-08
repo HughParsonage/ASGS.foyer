@@ -2,7 +2,11 @@
 
 # ASGS.foyer
 
-## ASGS.fyoer 0.3.2
+## ASGS.foyer 0.3.3
+
+* Bad link in README
+
+## ASGS.foyer 0.3.2
 
 * Attempt new install logic that does not require obsolete package rgdal to be installed.
 
