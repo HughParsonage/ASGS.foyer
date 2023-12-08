@@ -2,8 +2,7 @@
 New URL for installation
 
 ## Test environments
-* local CRAN install R 3.5.0
-* ubuntu 14.04 (on travis-ci), R 3.4.4, R 3.5.0, R-dev
+* local CRAN install R 4.2.0
 * win-builder (devel)
 
 ## R CMD check results
